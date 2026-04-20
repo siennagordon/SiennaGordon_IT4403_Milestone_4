@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Book Finder SPA</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Mustache -->
+    <script src="https://unpkg.com/mustache@latest/mustache.min.js"></script>
+
+    <!-- App JS -->
+    <script src="app.js" defer></script>
+</head>
+<body>
+
+    <header>
+        <h1>📚 Book Finder</h1>
+    </header>
+
+    <!-- ===================== -->
+    <!-- SEARCH BAR -->
+    <!-- ===================== -->
+    <section id="search-section">
+        <input type="text" id="search-input" placeholder="Search for books...">
+        <button id="search-button">Search</button>
+    </section>
+
+    <!-- ===================== -->
+    <!-- VIEW TOGGLES -->
+    <!-- ===================== -->
+    <section id="view-controls">
+        <button id="grid-view">Grid View</button>
+        <button id="list-view">List View</button>
+    </section>
+
+    <!-- ===================== -->
+    <!-- SECTION SWITCH -->
+    <!-- ===================== -->
+    <section id="section-switch">
+        <button id="show-search">Search Results</button>
+        <button id="show-collection">Collection</button>
+    </section>
+
+    <!-- ===================== -->
+    <!-- SEARCH RESULTS -->
+    <!-- ===================== -->
+    <section id="results-section">
+        <div id="results-container" class="grid-view"></div>
+        <div id="pagination-container"></div>
+    </section>
+
+    <!-- ===================== -->
+    <!-- COLLECTION -->
+    <!-- ===================== -->
+    <section id="collection-section" style="display:none;">
+        <h2>Featured Books</h2>
+        <div id="collection-container" class="grid-view"></div>
+    </section>
+
+    <!-- ===================== -->
+    <!-- DETAILS PANEL -->
+    <!-- ===================== -->
+    <section id="details-section">
+        <h2>Book Details</h2>
+        <div id="details-container"></div>
+    </section>
+
+    <!-- ===================== -->
+    <!-- MUSTACHE TEMPLATE: BOOK CARD -->
+    <!-- ===================== -->
+    <script id="book-template" type="x-tmpl-mustache">
+        <div class="book-card" data-book-id="{{id}}">
+            <img class="book-image" src="{{thumbnail}}" alt="{{title}}">
+            <h3>{{title}}</h3>
+        </div>
+    </script>
+
+    <!-- ===================== -->
+    <!-- MUSTACHE TEMPLATE: DETAILS -->
+    <!-- ===================== -->
+    <script id="details-template" type="x-tmpl-mustache">
+        <div class="details-card">
+            <img src="{{thumbnail}}" alt="{{title}}">
+            <div>
+                <h2>{{title}}</h2>
+                <p><strong>Author(s):</strong> {{authors}}</p>
+                <p>{{description}}</p>
+            </div>
+        </div>
+    </script>
+
+</body>
+</html>
