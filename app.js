@@ -12,7 +12,7 @@ let isLoading = false;
 // SEARCH BUTTON
 // =====================
 $("#search-button").on("click", function () {
-
+console.log("CLICKED");
     const inputValue = $("#search-input").val();
 
     if (!inputValue || inputValue.trim() === "") {
