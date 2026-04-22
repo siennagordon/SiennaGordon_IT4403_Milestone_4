@@ -13,6 +13,7 @@ let isLoading = false;
 // SEARCH BUTTON
 // =====================
 $("#search-button").on("click", function () {
+    $("#search-button").prop("disabled", true);
 console.log("CLICKED");
     const inputValue = $("#search-input").val();
 
@@ -42,9 +43,7 @@ function fetchBooks(query, startIndex = 0) {
 
     currentQuery = query;
 
-    const apiUrl = `https://www.googleapis.com/books/v1/volumes?q=${encodeURIComponent(query)}&startIndex=${startIndex}&maxResults=${RESULTS_PER_PAGE}`;
-
-    console.log("Fetching:", apiUrl);
+    const apiUrl = `https://www.googleapis.com/books/v1/volumes?q=${encodeURIComponent(query)}&startIndex=${startIndex}&maxResults=${RESULTS_PER_PAGE}&key=${API_KEY}`;
 
     $("#results-container").html("<p>Loading...</p>");
 
@@ -129,6 +128,7 @@ function renderPagination(totalItems) {
 // PAGINATION CLICK
 // =====================
 $(document).on("click", ".pagination-button", function () {
+if (isLoading) return;
 
     const startIndex = $(this).data("start-index");
     currentStartIndex = startIndex;
@@ -177,8 +177,7 @@ $(document).on("click", ".book-card", function () {
 // =====================
 function loadFeaturedBooks() {
 
-    const apiUrl = `https://www.googleapis.com/books/v1/volumes?q=bestsellers&maxResults=10`;
-
+const apiUrl = `https://www.googleapis.com/books/v1/volumes?q=bestsellers&maxResults=10&key=${API_KEY}`;
     $.getJSON(apiUrl, function (response) {
 
         if (!response.items) return;
